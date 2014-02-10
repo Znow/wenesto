@@ -11,6 +11,7 @@ import org.xmlpull.v1.XmlPullParserException;
 import android.app.IntentService;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.ResultReceiver;
 import android.provider.SyncStateContract.Constants;
 import android.util.Log;
 
@@ -35,7 +36,7 @@ public class RssService extends IntentService
 		try
 		{
 			RssParser parser = new RssParser();
-			rssItems = parser.parse(getInputStream)
+			rssItems = parser.parse(getInputStream(RSS_LINK));
 		}
 		catch (XmlPullParserException exception)
 		{
