@@ -6,10 +6,11 @@ import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.ActionBar.TabListener;
 import android.app.Activity;
-import android.app.FragmentTransaction;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 
 public class MainActivity extends FragmentActivity implements TabListener
 {
@@ -21,7 +22,8 @@ public class MainActivity extends FragmentActivity implements TabListener
 	private ActionBar actionBar;
 	
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	protected void onCreate(Bundle savedInstanceState) 
+	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
@@ -40,41 +42,63 @@ public class MainActivity extends FragmentActivity implements TabListener
 			actionBar.addTab(actionBar.newTab().setText(s).setTabListener(this));
 		}
 	
-
-    viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-    	 
-        @Override
-        public void onPageSelected(int position) {
-            // on changing the page
-            // make respected tab selected
-            actionBar.setSelectedNavigationItem(position);
+		viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() 
+		{
+			
+	        @Override
+	        public void onPageSelected(int position) {
+	            // on changing the page
+	            // make respected tab selected
+	            actionBar.setSelectedNavigationItem(position);
+	        }
+	
+	        @Override
+	        public void onPageScrolled(int arg0, float arg1, int arg2) 
+	        {
+	        	
+	        }
+	
+	        @Override
+	        public void onPageScrollStateChanged(int arg0) 
+	        {
+	        	
+	        }
+	    });
+		
+		if (savedInstanceState == null) {
+            addRssFragment();
         }
-
-        @Override
-        public void onPageScrolled(int arg0, float arg1, int arg2) {
-        }
-
-        @Override
-        public void onPageScrollStateChanged(int arg0) {
-        }
-    });
 	}
 	
+	private void addRssFragment() {
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        NewsFragment fragment = new NewsFragment();
+        transaction.add(R.id.pager, fragment);
+        transaction.commit();
+    }
+	
+	
 	@Override
-	public void onTabReselected(Tab arg0, FragmentTransaction arg1) {
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean("fragment_added", true);
+    }
+
+	@Override
+	public void onTabReselected(Tab arg0, android.app.FragmentTransaction arg1) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void onTabSelected(Tab tab, FragmentTransaction arg1) 
-	{
-		//On tab selected, show respected fragment view.
-		viewPager.setCurrentItem(tab.getPosition());
+	public void onTabSelected(Tab arg0, android.app.FragmentTransaction arg1) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	@Override
-	public void onTabUnselected(Tab arg0, FragmentTransaction arg1) {
+	public void onTabUnselected(Tab arg0, android.app.FragmentTransaction arg1) {
 		// TODO Auto-generated method stub
 		
 	}
