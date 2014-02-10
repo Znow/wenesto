@@ -32,25 +32,31 @@ public class NewsFragment extends Fragment implements OnItemClickListener
 	
 	
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) 
+	{
 		
-		if (view == null) {
-            //view = inflater.inflate(R.layout.fragment_layout, container, false);
+		if (view == null) 
+		{
+            view = inflater.inflate(R.layout.activity_main, container, false);
             progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
             listView = (ListView) view.findViewById(R.id.listView);
             listView.setOnItemClickListener(this);
             startService();
-        } else {
+        } 
+		else 
+		{
             // If we are returning from a configuration change:
             // "view" is still attached to the previous view hierarchy
             // so we need to remove it and re-attach it to the current one
             ViewGroup parent = (ViewGroup) view.getParent();
             parent.removeView(view);
         }
-        return view;
+		
+		return view;
 	}
 	
-	private void startService() {
+	private void startService() 
+	{
         Intent intent = new Intent(getActivity(), RssService.class);
         intent.putExtra(RssService.RECEIVER, resultReceiver);
         getActivity().startService(intent);
@@ -59,32 +65,35 @@ public class NewsFragment extends Fragment implements OnItemClickListener
 	/**
      * Once the {@link RssService} finishes its task, the result is sent to this ResultReceiver.
      */
-    private final ResultReceiver resultReceiver = new ResultReceiver(new Handler()) {
+    private final ResultReceiver resultReceiver = new ResultReceiver(new Handler()) 
+    {
         @SuppressWarnings("unchecked")
         @Override
-        protected void onReceiveResult(int resultCode, Bundle resultData) {
+        protected void onReceiveResult(int resultCode, Bundle resultData) 
+        {
             List<RssItem> items = (List<RssItem>) resultData.getSerializable(RssService.ITEMS);
-            if (items != null) {
+            if (items != null) 
+            {
                 RssAdapter adapter = new RssAdapter(getActivity(), items);
                 listView.setAdapter(adapter);
-            } else {
+            } 
+            else 
+            {
                 Toast.makeText(getActivity(), "An error occured while downloading the rss feed.",
                 Toast.LENGTH_LONG).show();
             }
             progressBar.setVisibility(View.GONE);
             listView.setVisibility(View.VISIBLE);
-        };
+        }
     };
  
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) 
+    {
         RssAdapter adapter = (RssAdapter) parent.getAdapter();
         RssItem item = (RssItem) adapter.getItem(position);
         Uri uri = Uri.parse(item.getLink());
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         startActivity(intent);
     }
-	
-	
-
 }
