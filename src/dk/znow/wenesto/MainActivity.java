@@ -59,6 +59,7 @@ public class MainActivity extends FragmentActivity implements TabListener
         }
     });
 	}
+
 	
 	@Override
 	public void onTabReselected(Tab arg0, FragmentTransaction arg1) {

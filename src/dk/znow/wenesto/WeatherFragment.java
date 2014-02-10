@@ -21,18 +21,19 @@ public class WeatherFragment extends Fragment
 	ProgressDialog dialog;
 	Bitmap icon = null;
 	
+
+//	@Override
+//	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+//			Bundle savedInstanceState) 
+//	{
+//		return inflater.inflate(R.layout.weatherfragment, container, false);
+//	}
 	
 	@Override
-	public void onCreate(Bundle savedInstanceState) 
-	{
-		super.onCreate(savedInstanceState);
-		
-	}
-	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) 
-	{
-		return inflater.inflate(R.layout.weatherfragment, container, false);
+			Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		return super.onCreateView(inflater, container, savedInstanceState);
 	}
 
 }
