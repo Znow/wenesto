@@ -1,7 +1,6 @@
 package dk.znow.wenesto;
 
 import java.util.List;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -30,14 +29,13 @@ public class NewsFragment extends Fragment implements OnItemClickListener
         setRetainInstance(true);
 	}
 	
-	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) 
 	{
 		
 		if (view == null) 
 		{
-            view = inflater.inflate(R.layout.activity_main, container, false);
+            view = inflater.inflate(R.layout.newsfragment, container, false);
             progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
             listView = (ListView) view.findViewById(R.id.listView);
             listView.setOnItemClickListener(this);
