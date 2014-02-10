@@ -42,7 +42,7 @@ public final class R {
         public static final int listView=0x7f080003;
         public static final int pager=0x7f080000;
         public static final int progressBar=0x7f080004;
-        public static final int scrollView1″=0x7f080007;
+        public static final int scrollView1=0x7f080007;
         public static final int tempText=0x7f08000b;
         public static final int weather_border=0x7f080006;
         public static final int weather_title=0x7f080005;
