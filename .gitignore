@@ -42,3 +42,5 @@ bin/classes/dk/znow/wenesto/NewsItem.class
 bin/classes/dk/znow/wenesto/NewsParser.class
 
 bin/classes/dk/znow/wenesto/NewsService.class
+
+bin/classes/dk/znow/wenesto/getCoordinates.class
