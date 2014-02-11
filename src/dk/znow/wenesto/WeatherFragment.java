@@ -33,7 +33,7 @@ public class WeatherFragment extends Fragment
 	{
 		if (view == null) 
 		{
-            view = inflater.inflate(R.layout.newsfragment, container, false);
+            view = inflater.inflate(R.layout.weatherfragment, container, false);
             //progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
             title = (TextView) view.findViewById(R.id.weather_title);
             txtTemperature = (TextView) view.findViewById(R.id.tempText);

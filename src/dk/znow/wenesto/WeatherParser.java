@@ -51,13 +51,13 @@ private final String ns = null;
             {
                 woeid = readWoeid(xmlPullParser);
             } 
-            if (woeid != null) 
-            {
-                NewsItem item = new NewsItem(title, description, link, pubDate);
-                WeatherItem item = new WeatherItem();
-                items.add(item);
-                woeid = null;
-            }
+//            if (woeid != null) 
+//            {
+//                NewsItem item = new NewsItem(title, description, link, pubDate);
+//                WeatherItem item = new WeatherItem();
+//                items.add(item);
+//                woeid = null;
+//            }
         }
         
         return items;
