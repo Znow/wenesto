@@ -1,19 +1,25 @@
 package dk.znow.wenesto;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.ResultReceiver;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class WeatherFragment extends Fragment
 {
@@ -47,12 +53,14 @@ public class WeatherFragment extends Fragment
             day4 = (TextView) view.findViewById(R.id.day4);
             
             getCoordinates getCoords = new getCoordinates(getActivity());
-            title.setText(getCoords.getCoords()+"");
+            //title.setText(getCoords.getCoords()+"");
+            //title.setText(text)
             
             image = (ImageView) view.findViewById(R.id.icon);
             
             
             startService();
+            getWoeid();
         } 
 		else 
 		{
@@ -72,7 +80,32 @@ public class WeatherFragment extends Fragment
 	}
 	public void getWoeid()
 	{
-		
+		Intent intent = new Intent(getActivity(), WoeidService.class);
+        intent.putExtra(WoeidService.RECEIVER, resultReceiver);
+        getActivity().startService(intent);
 	}
+	
+	private final ResultReceiver resultReceiver = new ResultReceiver(new Handler()) 
+    {
+        @SuppressWarnings("unchecked")
+        @Override
+        protected void onReceiveResult(int resultCode, Bundle resultData) 
+        {
+            List<NewsItem> items = (List<NewsItem>) resultData.getSerializable(NewsService.ITEMS);
+            String str = (String) resultData.getSerializable(WoeidService.ITEMS);
+            
+            Log.d("Woeid",str);
+            
+//            if (items != null) 
+//            {
+//                NewsAdapter adapter = new NewsAdapter(getActivity(), items);
+//            } 
+//            else 
+//            {
+//                Toast.makeText(getActivity(), "An error occured while downloading the rss feed.",
+//                Toast.LENGTH_LONG).show();
+//            }
+        }
+    };
 
 }

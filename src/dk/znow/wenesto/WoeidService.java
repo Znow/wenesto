@@ -19,7 +19,7 @@ public class WoeidService extends IntentService
 	private String queryString;
 	public static final String ITEMS = "items";
 	public static final String RECEIVER = "receiver";
-	public static String woeid;
+	public String woeid;
 	
 	public WoeidService()
 	{
