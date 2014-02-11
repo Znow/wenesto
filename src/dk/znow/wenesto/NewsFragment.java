@@ -105,13 +105,14 @@ public class NewsFragment extends Fragment implements OnItemClickListener
         // Creates a new intent with the URI
         //Intent intent = new Intent(Intent.ACTION_VIEW, uri);
        
-        
         Intent newsIntent = new Intent();
         
         newsIntent.setClass(getActivity(), NewsActivity.class);
         
+        //newsIntent.putExtra("image", item.getImageUrl());
         newsIntent.putExtra("title", item.getTitle());
         newsIntent.putExtra("description", Html.fromHtml(item.getDescription()).toString());
+        newsIntent.putExtra("pubDate", item.getPubDate());
         
         startActivity(newsIntent);
     }

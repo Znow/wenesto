@@ -34,3 +34,13 @@ bin/classes/dk/znow/wenesto/R$string.class
 bin/classes/dk/znow/wenesto/R$style.class
 
 bin/classes/dk/znow/wenesto/WeatherFragment.class
+
+bin/AndroidManifest.xml
+
+bin/classes/dk/znow/wenesto/NewsItem.class
+
+bin/classes/dk/znow/wenesto/NewsParser.class
+
+bin/classes/dk/znow/wenesto/NewsService.class
+
+bin/classes/dk/znow/wenesto/getCoordinates.class
