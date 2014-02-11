@@ -5,18 +5,19 @@
     android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     android:padding="10sp"
-    tools:context=".Nyheder" >
+    tools:context=".NewsItem" >
 
     <TextView
         android:id="@+id/newsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:textSize="30sp"
+        android:padding="10sp" />
 
     <TextView
         android:id="@+id/newsDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView" />
+        android:textSize="20sp" />
 
 </LinearLayout>
