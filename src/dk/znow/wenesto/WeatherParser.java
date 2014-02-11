@@ -51,6 +51,7 @@ private final String ns = null;
             {
                 woeid = readWoeid(xmlPullParser);
             } 
+<<<<<<< HEAD
 //            if (woeid != null) 
 //            {
 //                NewsItem item = new NewsItem(title, description, link, pubDate);
@@ -58,6 +59,15 @@ private final String ns = null;
 //                items.add(item);
 //                woeid = null;
 //            }
+=======
+            if (woeid != null) 
+            {
+                //NewsItem item = new NewsItem(title, description, link, pubDate);
+                //WeatherItem weatherItem = new WeatherItem();
+                //items.add(item);
+                woeid = null;
+            }
+>>>>>>> 466bca1fc88463218c6a2c8402623589281eda38
         }
         
         return items;

@@ -4,7 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".NewsItem" >
+    android:padding="10sp"
+    tools:context=".Nyheder" >
 
     <TextView
         android:id="@+id/newsTitle"
