@@ -1,12 +1,14 @@
 package dk.znow.wenesto;
 
 import java.util.List;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.ResultReceiver;
 import android.support.v4.app.Fragment;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -109,7 +111,7 @@ public class NewsFragment extends Fragment implements OnItemClickListener
         newsIntent.setClass(getActivity(), NewsActivity.class);
         
         newsIntent.putExtra("title", item.getTitle());
-        newsIntent.putExtra("description", item.getDescription());
+        newsIntent.putExtra("description", Html.fromHtml(item.getDescription()).toString());
         
         startActivity(newsIntent);
     }
