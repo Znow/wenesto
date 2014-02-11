@@ -15,7 +15,7 @@ public class WeatherParser {
 private final String ns = null;
 	
 	// Parse the inputstream as a list of News Items
-	public List<NewsItem> parse(InputStream inputStream) throws XmlPullParserException, IOException
+	public List<WeatherItem> parse(InputStream inputStream) throws XmlPullParserException, IOException
 	{
 		try
 		{
@@ -32,11 +32,11 @@ private final String ns = null;
 	}
 	
 	// 
-	private List<NewsItem> readFeed(XmlPullParser xmlPullParser) throws XmlPullParserException, IOException
+	private List<WeatherItem> readFeed(XmlPullParser xmlPullParser) throws XmlPullParserException, IOException
 	{
 		xmlPullParser.require(XmlPullParser.START_TAG, null, "rss");
         String woeid = null;
-        List<NewsItem> items = new ArrayList<NewsItem>();
+        List<WeatherItem> items = new ArrayList<WeatherItem>();
         
         while (xmlPullParser.next() != XmlPullParser.END_DOCUMENT) 
         {
@@ -51,7 +51,7 @@ private final String ns = null;
             {
                 woeid = readWoeid(xmlPullParser);
             } 
-<<<<<<< HEAD
+
 //            if (woeid != null) 
 //            {
 //                NewsItem item = new NewsItem(title, description, link, pubDate);
@@ -59,7 +59,6 @@ private final String ns = null;
 //                items.add(item);
 //                woeid = null;
 //            }
-=======
             if (woeid != null) 
             {
                 //NewsItem item = new NewsItem(title, description, link, pubDate);
@@ -67,7 +66,6 @@ private final String ns = null;
                 //items.add(item);
                 woeid = null;
             }
->>>>>>> 466bca1fc88463218c6a2c8402623589281eda38
         }
         
         return items;
