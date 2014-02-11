@@ -5,7 +5,7 @@ public class NewsItem {
 	private final String description;
 	private final String link;
 	private final String pubDate;
-	//private final String image;
+	//private final String imageUrl;
 	
 	public NewsItem(String title, String description, String link, String pubDate)
 	{
@@ -13,6 +13,7 @@ public class NewsItem {
 		this.description = description;
 		this.link = link;
 		this.pubDate = pubDate;
+		//this.imageUrl = imageUrl;
 	}
 	
 	public String getTitle()
@@ -35,8 +36,8 @@ public class NewsItem {
 		return pubDate;
 	}
 	
-	/*public String getImage()
+	/*public String getImageUrl()
 	{
-		return image;
+		return imageUrl;
 	}*/
 }
