@@ -29,10 +29,10 @@ public class WoeidService extends IntentService
 	@Override
 	protected void onHandleIntent(Intent intent) 
 	{
-		getCoordinates getCoord = new getCoordinates();
-		queryString = "http://where.yahooapis.com/geocode?q="+getCoord.getCoords()+"&appid=y0vCd27i";
+		
+		queryString = "http://where.yahooapis.com/geocode?q="+MainActivity.coords+"&appid=y0vCd27i";
 		Log.d(Constants.TAG, "Service started");
-//		String woeid = null;
+
 		Bundle bundle = new Bundle();
 		
 		try

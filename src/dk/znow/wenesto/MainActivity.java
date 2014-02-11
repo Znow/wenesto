@@ -28,6 +28,7 @@ public class MainActivity extends FragmentActivity implements TabListener, Locat
 	public static LocationManager locationManager;
 	Location location;
 	String provider;
+	public static String coords;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
@@ -42,8 +43,8 @@ public class MainActivity extends FragmentActivity implements TabListener, Locat
 		viewPager.setAdapter(tabsAdapter);
 		//actionBar.setHomeButtonEnabled = false;
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-		
+		getCoordinates getCoord = new getCoordinates(this);
+		coords = getCoord.getCoords();
 		//Add tabs
 		
 		for(String s : tabs)

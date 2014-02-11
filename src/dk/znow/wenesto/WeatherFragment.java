@@ -46,6 +46,9 @@ public class WeatherFragment extends Fragment
             day3 = (TextView) view.findViewById(R.id.day3);
             day4 = (TextView) view.findViewById(R.id.day4);
             
+            getCoordinates getCoords = new getCoordinates(getActivity());
+            title.setText(getCoords.getCoords()+"");
+            
             image = (ImageView) view.findViewById(R.id.icon);
             
             
