@@ -1,7 +1,6 @@
 package dk.znow.wenesto;
 
 import dk.znow.wenesto.adapter.TabsPagerAdapter;
-import android.location.Criteria;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -9,10 +8,7 @@ import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.ActionBar.TabListener;
-import android.app.Activity;
-import android.content.Context;
 import android.support.v4.view.ViewPager;
-import android.view.Menu;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;

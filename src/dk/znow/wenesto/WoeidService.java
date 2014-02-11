@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.net.URL;
-import java.util.List;
-
 import org.xmlpull.v1.XmlPullParserException;
 
 import android.app.IntentService;
@@ -50,7 +48,7 @@ public class WoeidService extends IntentService
 			Log.w(exception.getMessage(), exception);
 		}
 		
-		bundle.putSerializable(ITEMS, (Serializable) woeid);
+		bundle.putSerializable(ITEMS, woeid);
 		ResultReceiver resultReceiver = intent.getParcelableExtra(RECEIVER);
 		resultReceiver.send(0, bundle);
 		

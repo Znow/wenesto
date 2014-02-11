@@ -5,6 +5,5 @@
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
-	<classpathentry kind="lib" path="/Users/znowm4n/Downloads/android-query-full.0.26.7.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
