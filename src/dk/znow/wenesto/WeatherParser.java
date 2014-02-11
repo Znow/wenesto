@@ -54,8 +54,8 @@ private final String ns = null;
             if (woeid != null) 
             {
                 //NewsItem item = new NewsItem(title, description, link, pubDate);
-                WeatherItem weatherItem = new WeatherItem();
-                items.add(item);
+                //WeatherItem weatherItem = new WeatherItem();
+                //items.add(item);
                 woeid = null;
             }
         }
