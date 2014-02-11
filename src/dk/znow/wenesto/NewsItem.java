@@ -5,6 +5,7 @@ public class NewsItem {
 	private final String description;
 	private final String link;
 	private final String pubDate;
+	//private final String image;
 	
 	public NewsItem(String title, String description, String link, String pubDate)
 	{
@@ -33,4 +34,9 @@ public class NewsItem {
 	{
 		return pubDate;
 	}
+	
+	/*public String getImage()
+	{
+		return image;
+	}*/
 }

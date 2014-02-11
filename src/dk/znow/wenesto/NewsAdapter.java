@@ -6,12 +6,14 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class NewsAdapter extends BaseAdapter {
 	
 	private final List<NewsItem> items;
 	private final Context context;
+	//public ImageLoader imageLoader;
 	
 	public NewsAdapter(Context context, List<NewsItem> items)
 	{
@@ -40,19 +42,17 @@ public class NewsAdapter extends BaseAdapter {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) 
 	{
-		ViewHolder viewHolder;
+		ViewHolder viewHolder = new ViewHolder();
 		
 		if (convertView == null)
 		{
 			convertView = View.inflate(context, R.layout.list_news_item, null);
 			
-			viewHolder = new ViewHolder();
-			
 			// Set the item title
 			viewHolder.itemTitle = (TextView) convertView.findViewById(R.id.itemTitle);
-			
-			convertView.setTag(viewHolder);
-			
+			viewHolder.itemImage = (ImageView) convertView.findViewById(R.id.itemImage);
+	        
+	        convertView.setTag(viewHolder);			
 		}
 		else
 		{
@@ -60,6 +60,7 @@ public class NewsAdapter extends BaseAdapter {
 		}
 		
 		viewHolder.itemTitle.setText(items.get(position).getTitle() + items.get(position).getPubDate());
+		//viewHolder.itemImage.setText(items.get(position).getImage());
 		
 		
 		return convertView;
@@ -67,7 +68,8 @@ public class NewsAdapter extends BaseAdapter {
 	
 	// Holds the item title in a text view
 	static class ViewHolder {
-        TextView itemTitle;
+        ImageView itemImage;
+		TextView itemTitle;
     }
 	
 }

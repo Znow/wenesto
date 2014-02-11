@@ -98,10 +98,19 @@ public class NewsFragment extends Fragment implements OnItemClickListener
         NewsItem item = (NewsItem) adapter.getItem(position);
         
         // gets the item link and makes a URI of it
-        Uri uri = Uri.parse(item.getLink());
+        //Uri uri = Uri.parse(item.getLink());
         
         // Creates a new intent with the URI
-        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-        startActivity(intent);
+        //Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+       
+        
+        Intent newsIntent = new Intent();
+        
+        newsIntent.setClass(getActivity(), NewsActivity.class);
+        
+        newsIntent.putExtra("title", item.getTitle());
+        newsIntent.putExtra("description", item.getDescription());
+        
+        startActivity(newsIntent);
     }
 }
