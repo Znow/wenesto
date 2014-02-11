@@ -25,9 +25,6 @@ public class WeatherFragment extends Fragment
 	Bitmap icon = null;
 	View view;
 	//LocationManager locationManager;
-	Location location;
-	String provider;
-	String coordinates;
 	String woeid;
 	
 	@Override
@@ -69,25 +66,6 @@ public class WeatherFragment extends Fragment
 	public void startService()
 	{
 		
-	}
-	
-	public void getCoordinates()
-	{
-		// Define the criteria how to select the locatioin provider -> use
-        // default
-        Criteria criteria = new Criteria();
-        provider = MainActivity.locationManager.getBestProvider(criteria, false);
-        Location location = MainActivity.locationManager.getLastKnownLocation(provider);
-
-        // Initialize the location fields
-        if (location != null) {
-          System.out.println("Provider " + provider + " has been selected.");
-          
-          coordinates = location.getLatitude()+","+location.getLongitude();
-        } else {
-          
-        }
-
 	}
 	public void getWoeid()
 	{
