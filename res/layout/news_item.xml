@@ -6,6 +6,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:padding="10sp"
     tools:context=".NewsItem" >
+    
+    <ImageView android:id="@+id/newsImage"
+		   android:layout_width="50dip"
+		   android:layout_height="50dip"
+		   android:contentDescription="@string/hello_world" />
 
     <TextView
         android:id="@+id/newsTitle"

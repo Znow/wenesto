@@ -20,3 +20,17 @@ bin/classes/dk/znow/wenesto/NewsFragment.class
 bin/classes/dk/znow/wenesto/WeatherParser.class
 
 bin/classes/dk/znow/wenesto/WeatherParser.class
+
+*.class
+
+bin/classes/dk/znow/wenesto/R$id.class
+
+bin/classes/dk/znow/wenesto/R$layout.class
+
+bin/classes/dk/znow/wenesto/R$menu.class
+
+bin/classes/dk/znow/wenesto/R$string.class
+
+bin/classes/dk/znow/wenesto/R$style.class
+
+bin/classes/dk/znow/wenesto/WeatherFragment.class
