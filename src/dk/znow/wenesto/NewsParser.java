@@ -13,6 +13,7 @@ import android.util.Xml;
 public class NewsParser {
 	private final String ns = null;
 	
+	// Parse the inputstream as a list of News Items
 	public List<NewsItem> parse(InputStream inputStream) throws XmlPullParserException, IOException
 	{
 		try
@@ -29,12 +30,16 @@ public class NewsParser {
 		}
 	}
 	
+	// 
 	private List<NewsItem> readFeed(XmlPullParser xmlPullParser) throws XmlPullParserException, IOException
 	{
 		xmlPullParser.require(XmlPullParser.START_TAG, null, "rss");
         String title = null;
+        String description = null;
         String link = null;
+        String pubDate = null;
         List<NewsItem> items = new ArrayList<NewsItem>();
+        
         while (xmlPullParser.next() != XmlPullParser.END_DOCUMENT) 
         {
             if (xmlPullParser.getEventType() != XmlPullParser.START_TAG) 
@@ -48,23 +53,34 @@ public class NewsParser {
             {
                 title = readTitle(xmlPullParser);
             } 
+            else if (name.equals("description"))
+            {
+            	description = readDescription(xmlPullParser);
+            }
             else if (name.equals("link")) 
             {
                 link = readLink(xmlPullParser);
             }
-            
-            if (title != null && link != null) 
+            else if (name.equals("pubDate"))
             {
-                NewsItem item = new NewsItem(title, link);
+            	pubDate = readPubDate(xmlPullParser);
+            }
+            
+            if (title != null && description != null && link != null && pubDate != null) 
+            {
+                NewsItem item = new NewsItem(title, description, link, pubDate);
                 items.add(item);
                 title = null;
+                description = null;
                 link = null;
+                pubDate = null;
             }
         }
         
         return items;
 	}
 	
+	// Read the link tags and return the result
 	private String readLink(XmlPullParser xmlPullParser) throws XmlPullParserException, IOException 
 	{
 		xmlPullParser.require(XmlPullParser.START_TAG, ns, "link");
@@ -73,7 +89,18 @@ public class NewsParser {
         
         return link;
     }
+	
+	// Read the content tag and return the result
+	private String readDescription(XmlPullParser xmlPullParser) throws XmlPullParserException, IOException
+	{
+		xmlPullParser.require(XmlPullParser.START_TAG, ns, "description");
+		String description = readText(xmlPullParser);
+		xmlPullParser.require(XmlPullParser.END_TAG, ns, "description");
+		
+		return description;
+	}
  
+	// Read the title tag and return the result
     private String readTitle(XmlPullParser xmlPullParser) throws XmlPullParserException, IOException 
     {
     	xmlPullParser.require(XmlPullParser.START_TAG, ns, "title");
@@ -82,8 +109,18 @@ public class NewsParser {
         
         return title;
     }
+    
+    // Read the title tag and return the result
+    private String readPubDate(XmlPullParser xmlPullParser) throws XmlPullParserException, IOException 
+    {
+    	xmlPullParser.require(XmlPullParser.START_TAG, ns, "pubDate");
+        String pubDate = readText(xmlPullParser);
+        xmlPullParser.require(XmlPullParser.END_TAG, ns, "pubDate");
+        
+        return pubDate;
+    }
  
-    // For the tags title and link, extract their text values.
+    // For the tags title, content and link, extract their text values.
     private String readText(XmlPullParser xmlPullParser) throws IOException, XmlPullParserException 
     {
         String result = "";

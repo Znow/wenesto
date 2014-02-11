@@ -16,26 +16,26 @@ import android.util.Log;
 
 public class NewsService extends IntentService 
 {
-	private static final String RSS_LINK = "http://news.yahoo.com/rss/entertainment";
+	private static final String NEWS_LINK = "http://news.yahoo.com/rss/entertainment";
 	public static final String ITEMS = "items";
 	public static final String RECEIVER = "receiver";
 	
 	public NewsService()
 	{
-		super("RssService");
+		super("NewsService");
 	}
 	
 	@Override
 	protected void onHandleIntent(Intent intent) 
 	{
 		Log.d(Constants.TAG, "Service started");
-		List<NewsItem> rssItems = null;
+		List<NewsItem> newsItems = null;
 		Bundle bundle = new Bundle();
 		
 		try
 		{
 			NewsParser parser = new NewsParser();
-			rssItems = parser.parse(getInputStream(RSS_LINK));
+			newsItems = parser.parse(getInputStream(NEWS_LINK));
 		}
 		catch (XmlPullParserException exception)
 		{
@@ -46,17 +46,21 @@ public class NewsService extends IntentService
 			Log.w(exception.getMessage(), exception);
 		}
 		
-		bundle.putSerializable(ITEMS, (Serializable) rssItems);
+		bundle.putSerializable(ITEMS, (Serializable) newsItems);
 		ResultReceiver resultReceiver = intent.getParcelableExtra(RECEIVER);
 		resultReceiver.send(0, bundle);
 		
 	}
 	
+	// Get the input stream specified by the link
 	public InputStream getInputStream(String link)
 	{
 		try
 		{
+			// Create a URL of the link
 			URL url = new URL(link);
+			
+			// Open a connection and get the input
 			return url.openConnection().getInputStream();
 		}
 		catch (IOException exception)

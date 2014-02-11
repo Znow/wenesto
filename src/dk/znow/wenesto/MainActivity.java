@@ -75,12 +75,12 @@ public class MainActivity extends FragmentActivity implements TabListener, Locat
 	    });
 		
 		if (savedInstanceState == null) {
-            addRssFragment();
+            addNewsFragment();
         }
 	}
 
 	
-	private void addRssFragment() {
+	private void addNewsFragment() {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         NewsFragment fragment = new NewsFragment();

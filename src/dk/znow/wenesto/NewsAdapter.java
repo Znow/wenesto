@@ -59,7 +59,7 @@ public class NewsAdapter extends BaseAdapter {
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
 		
-		viewHolder.itemTitle.setText(items.get(position).getTitle());
+		viewHolder.itemTitle.setText(items.get(position).getTitle() + items.get(position).getPubDate());
 		
 		
 		return convertView;
