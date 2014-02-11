@@ -2,6 +2,9 @@ package dk.znow.wenesto;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
@@ -11,8 +14,8 @@ public class WoeidParser {
 	private final String ns = null;
 
 	// Parse the inputstream as a list of News Items
-	public String parse(InputStream inputStream) throws XmlPullParserException,
-			IOException {
+	public List<WoeidItem> parse(InputStream inputStream)
+			throws XmlPullParserException, IOException {
 		try {
 			XmlPullParser xmlPullParser = Xml.newPullParser();
 			xmlPullParser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES,
@@ -26,10 +29,11 @@ public class WoeidParser {
 	}
 
 	//
-	private String readFeed(XmlPullParser xmlPullParser)
+	private List<WoeidItem> readFeed(XmlPullParser xmlPullParser)
 			throws XmlPullParserException, IOException {
 		xmlPullParser.require(XmlPullParser.START_TAG, null, "rss");
 		String woeid = null;
+		List<WoeidItem> items = new ArrayList<WoeidItem>();
 
 		while (xmlPullParser.next() != XmlPullParser.END_DOCUMENT) {
 			if (xmlPullParser.getEventType() != XmlPullParser.START_TAG) {
@@ -41,16 +45,14 @@ public class WoeidParser {
 			if (name.equals("woeid")) {
 				woeid = readWoeid(xmlPullParser);
 			}
-			// if (woeid != null)
-			// {
-			// NewsItem item = new NewsItem(title, description, link, pubDate);
-			// WeatherItem item = new WeatherItem();
-			// items.add(item);
-			// woeid = null;
-			// }
+			if (woeid != null) {
+				WoeidItem item = new WoeidItem(woeid);
+				items.add(item);
+				woeid = null;
+			}
 		}
 
-		return woeid;
+		return items;
 	}
 
 	// Read the link tags and return the result

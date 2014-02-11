@@ -21,7 +21,7 @@ public class NewsActivity extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.news_item);
 		
-		//aq = new AQuery(this);
+		aq = new AQuery(this);
 		
 		((TextView)findViewById(R.id.newsTitle)).setText(getIntent().getStringExtra("title"));
 		((TextView)findViewById(R.id.newsDescription)).setText(getIntent().getStringExtra("description"));

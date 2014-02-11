@@ -87,10 +87,15 @@ public class WeatherFragment extends Fragment
         @Override
         protected void onReceiveResult(int resultCode, Bundle resultData) 
         {
-            List<NewsItem> items = (List<NewsItem>) resultData.getSerializable(NewsService.ITEMS);
-            String str = (String) resultData.getSerializable(WoeidService.ITEMS);
+            List<WoeidItem> items = (List<WoeidItem>) resultData.getSerializable(WoeidService.ITEMS);
+            //String str = (String) resultData.getSerializable(WoeidService.ITEMS);
             
-            Log.d("Woeid",str);
+            Log.d("Woeid","noob");
+            for(WoeidItem i : items)
+            {
+            	Log.d("Woeid", i.getWoeid());
+            	Log.w("Woeid", i.getWoeid());
+            }
             
 //            if (items != null) 
 //            {

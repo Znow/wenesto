@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Serializable;
 import java.net.URL;
+import java.util.List;
+
 import org.xmlpull.v1.XmlPullParserException;
 
 import android.app.IntentService;
@@ -27,16 +29,16 @@ public class WoeidService extends IntentService
 	@Override
 	protected void onHandleIntent(Intent intent) 
 	{
-		
 		queryString = "http://where.yahooapis.com/geocode?q="+MainActivity.coords+"&appid=y0vCd27i";
-		Log.d(Constants.TAG, "Service started");
+		Log.d("WoeidService", "Service started");
+		List<WoeidItem> woeidItems = null;
 
 		Bundle bundle = new Bundle();
 		
 		try
 		{
 			WoeidParser parser = new WoeidParser();
-			woeid = parser.parse(getInputStream(queryString));
+			woeidItems = parser.parse(getInputStream(queryString));
 			//WoeidItem item = new WoeidItem(woeid);
 		}
 		catch (XmlPullParserException exception)
@@ -48,7 +50,7 @@ public class WoeidService extends IntentService
 			Log.w(exception.getMessage(), exception);
 		}
 		
-		bundle.putSerializable(ITEMS, woeid);
+		bundle.putSerializable(ITEMS, (Serializable) woeidItems);
 		ResultReceiver resultReceiver = intent.getParcelableExtra(RECEIVER);
 		resultReceiver.send(0, bundle);
 		
