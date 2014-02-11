@@ -3,7 +3,12 @@ package dk.znow.wenesto;
 import java.util.ArrayList;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -14,7 +19,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-public class WeatherFragment extends Fragment
+public class WeatherFragment extends Fragment implements LocationListener
 {
 	String temperature, condition, date, humidity, wind, link;
 	TextView title, txtTemperature, txtDate, txtCondition, txtWind, txtHumidity, day1, day2, day3, day4;
@@ -23,6 +28,9 @@ public class WeatherFragment extends Fragment
 	ProgressDialog dialog;
 	Bitmap icon = null;
 	View view;
+	LocationManager locationManager;
+	Location location;
+	String provider;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,7 +53,7 @@ public class WeatherFragment extends Fragment
             
             image = (ImageView) view.findViewById(R.id.icon);
             
-            //startService();
+            startService();
         } 
 		else 
 		{
@@ -57,6 +65,35 @@ public class WeatherFragment extends Fragment
         }
 		
 		return view;
+	}
+	
+	public void startService()
+	{
+		
+	}
+
+	@Override
+	public void onLocationChanged(Location location) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onProviderDisabled(String arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onProviderEnabled(String arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onStatusChanged(String arg0, int arg1, Bundle arg2) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
