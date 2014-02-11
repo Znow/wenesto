@@ -1,18 +1,23 @@
 package dk.znow.wenesto;
 
 import dk.znow.wenesto.adapter.TabsPagerAdapter;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.ActionBar.TabListener;
 import android.app.Activity;
+import android.content.Context;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
-public class MainActivity extends FragmentActivity implements TabListener
+public class MainActivity extends FragmentActivity implements TabListener, LocationListener
 {
 	
 	//Tab titles
@@ -20,6 +25,9 @@ public class MainActivity extends FragmentActivity implements TabListener
 	private ViewPager viewPager;
 	private TabsPagerAdapter tabsAdapter;
 	private ActionBar actionBar;
+	public static LocationManager locationManager;
+	Location location;
+	String provider;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) 
@@ -34,6 +42,7 @@ public class MainActivity extends FragmentActivity implements TabListener
 		viewPager.setAdapter(tabsAdapter);
 		//actionBar.setHomeButtonEnabled = false;
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		
 		//Add tabs
 		
@@ -99,6 +108,34 @@ public class MainActivity extends FragmentActivity implements TabListener
 
 	@Override
 	public void onTabUnselected(Tab arg0, android.app.FragmentTransaction arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void onLocationChanged(Location location) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void onProviderDisabled(String provider) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void onProviderEnabled(String provider) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void onStatusChanged(String provider, int status, Bundle extras) {
 		// TODO Auto-generated method stub
 		
 	}

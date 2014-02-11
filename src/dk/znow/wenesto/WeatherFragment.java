@@ -3,11 +3,9 @@ package dk.znow.wenesto;
 import java.util.ArrayList;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.location.Criteria;
 import android.location.Location;
-import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,11 +13,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
-public class WeatherFragment extends Fragment implements LocationListener
+public class WeatherFragment extends Fragment
 {
 	String temperature, condition, date, humidity, wind, link;
 	TextView title, txtTemperature, txtDate, txtCondition, txtWind, txtHumidity, day1, day2, day3, day4;
@@ -28,9 +24,11 @@ public class WeatherFragment extends Fragment implements LocationListener
 	ProgressDialog dialog;
 	Bitmap icon = null;
 	View view;
-	LocationManager locationManager;
+	//LocationManager locationManager;
 	Location location;
 	String provider;
+	String coordinates;
+	String woeid;
 	
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -53,6 +51,7 @@ public class WeatherFragment extends Fragment implements LocationListener
             
             image = (ImageView) view.findViewById(R.id.icon);
             
+            
             startService();
         } 
 		else 
@@ -71,28 +70,27 @@ public class WeatherFragment extends Fragment implements LocationListener
 	{
 		
 	}
+	
+	public void getCoordinates()
+	{
+		// Define the criteria how to select the locatioin provider -> use
+        // default
+        Criteria criteria = new Criteria();
+        provider = MainActivity.locationManager.getBestProvider(criteria, false);
+        Location location = MainActivity.locationManager.getLastKnownLocation(provider);
 
-	@Override
-	public void onLocationChanged(Location location) {
-		// TODO Auto-generated method stub
-		
+        // Initialize the location fields
+        if (location != null) {
+          System.out.println("Provider " + provider + " has been selected.");
+          
+          coordinates = location.getLatitude()+","+location.getLongitude();
+        } else {
+          
+        }
+
 	}
-
-	@Override
-	public void onProviderDisabled(String arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onProviderEnabled(String arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onStatusChanged(String arg0, int arg1, Bundle arg2) {
-		// TODO Auto-generated method stub
+	public void getWoeid()
+	{
 		
 	}
 
