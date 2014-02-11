@@ -10,10 +10,10 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import android.util.Xml;
 
-public class RssParser {
+public class NewsParser {
 	private final String ns = null;
 	
-	public List<RssItem> parse(InputStream inputStream) throws XmlPullParserException, IOException
+	public List<NewsItem> parse(InputStream inputStream) throws XmlPullParserException, IOException
 	{
 		try
 		{
@@ -29,12 +29,12 @@ public class RssParser {
 		}
 	}
 	
-	private List<RssItem> readFeed(XmlPullParser xmlPullParser) throws XmlPullParserException, IOException
+	private List<NewsItem> readFeed(XmlPullParser xmlPullParser) throws XmlPullParserException, IOException
 	{
 		xmlPullParser.require(XmlPullParser.START_TAG, null, "rss");
         String title = null;
         String link = null;
-        List<RssItem> items = new ArrayList<RssItem>();
+        List<NewsItem> items = new ArrayList<NewsItem>();
         while (xmlPullParser.next() != XmlPullParser.END_DOCUMENT) 
         {
             if (xmlPullParser.getEventType() != XmlPullParser.START_TAG) 
@@ -55,7 +55,7 @@ public class RssParser {
             
             if (title != null && link != null) 
             {
-                RssItem item = new RssItem(title, link);
+                NewsItem item = new NewsItem(title, link);
                 items.add(item);
                 title = null;
                 link = null;

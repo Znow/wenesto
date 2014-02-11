@@ -1,10 +1,10 @@
 package dk.znow.wenesto;
 
-public class RssItem {
+public class NewsItem {
 	private final String title;
 	private final String link;
 	
-	public RssItem(String title, String link)
+	public NewsItem(String title, String link)
 	{
 		this.title = title;
 		this.link = link;

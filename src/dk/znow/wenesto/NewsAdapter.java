@@ -8,12 +8,12 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-public class RssAdapter extends BaseAdapter {
+public class NewsAdapter extends BaseAdapter {
 	
-	private final List<RssItem> items;
+	private final List<NewsItem> items;
 	private final Context context;
 	
-	public RssAdapter(Context context, List<RssItem> items)
+	public NewsAdapter(Context context, List<NewsItem> items)
 	{
 		this.items = items;
 		this.context = context;
@@ -44,7 +44,7 @@ public class RssAdapter extends BaseAdapter {
 		
 		if (convertView == null)
 		{
-			convertView = View.inflate(context, R.layout.news_item, null);
+			convertView = View.inflate(context, R.layout.list_news_item, null);
 			
 			viewHolder = new ViewHolder();
 			

@@ -14,13 +14,13 @@ import android.os.Bundle;
 import android.os.ResultReceiver;
 import android.util.Log;
 
-public class RssService extends IntentService 
+public class NewsService extends IntentService 
 {
 	private static final String RSS_LINK = "http://news.yahoo.com/rss/entertainment";
 	public static final String ITEMS = "items";
 	public static final String RECEIVER = "receiver";
 	
-	public RssService()
+	public NewsService()
 	{
 		super("RssService");
 	}
@@ -29,12 +29,12 @@ public class RssService extends IntentService
 	protected void onHandleIntent(Intent intent) 
 	{
 		Log.d(Constants.TAG, "Service started");
-		List<RssItem> rssItems = null;
+		List<NewsItem> rssItems = null;
 		Bundle bundle = new Bundle();
 		
 		try
 		{
-			RssParser parser = new RssParser();
+			NewsParser parser = new NewsParser();
 			rssItems = parser.parse(getInputStream(RSS_LINK));
 		}
 		catch (XmlPullParserException exception)

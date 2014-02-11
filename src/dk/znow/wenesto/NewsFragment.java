@@ -53,15 +53,16 @@ public class NewsFragment extends Fragment implements OnItemClickListener
 		return view;
 	}
 	
+	// Start the news service to retrieve the news
 	private void startService() 
 	{
-        Intent intent = new Intent(getActivity(), RssService.class);
-        intent.putExtra(RssService.RECEIVER, resultReceiver);
+        Intent intent = new Intent(getActivity(), NewsService.class);
+        intent.putExtra(NewsService.RECEIVER, resultReceiver);
         getActivity().startService(intent);
     }
 
 	/**
-     * Once the {@link RssService} finishes its task, the result is sent to this ResultReceiver.
+     * Once the {@link NewsService} finishes its task, the result is sent to this ResultReceiver.
      */
     private final ResultReceiver resultReceiver = new ResultReceiver(new Handler()) 
     {
@@ -69,10 +70,11 @@ public class NewsFragment extends Fragment implements OnItemClickListener
         @Override
         protected void onReceiveResult(int resultCode, Bundle resultData) 
         {
-            List<RssItem> items = (List<RssItem>) resultData.getSerializable(RssService.ITEMS);
+            List<NewsItem> items = (List<NewsItem>) resultData.getSerializable(NewsService.ITEMS);
+            
             if (items != null) 
             {
-                RssAdapter adapter = new RssAdapter(getActivity(), items);
+                NewsAdapter adapter = new NewsAdapter(getActivity(), items);
                 listView.setAdapter(adapter);
             } 
             else 
@@ -80,6 +82,7 @@ public class NewsFragment extends Fragment implements OnItemClickListener
                 Toast.makeText(getActivity(), "An error occured while downloading the rss feed.",
                 Toast.LENGTH_LONG).show();
             }
+            
             progressBar.setVisibility(View.GONE);
             listView.setVisibility(View.VISIBLE);
         }
@@ -88,9 +91,16 @@ public class NewsFragment extends Fragment implements OnItemClickListener
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) 
     {
-        RssAdapter adapter = (RssAdapter) parent.getAdapter();
-        RssItem item = (RssItem) adapter.getItem(position);
+    	// Creates a new news adapter from the parent
+        NewsAdapter adapter = (NewsAdapter) parent.getAdapter();
+        
+        // creates a news item from the item clicked in the list, with the position
+        NewsItem item = (NewsItem) adapter.getItem(position);
+        
+        // gets the item link and makes a URI of it
         Uri uri = Uri.parse(item.getLink());
+        
+        // Creates a new intent with the URI
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         startActivity(intent);
     }
