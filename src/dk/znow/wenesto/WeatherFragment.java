@@ -24,7 +24,7 @@ import android.widget.Toast;
 public class WeatherFragment extends Fragment {
 	String temperature, condition, date, humidity, wind, link;
 	TextView title, txtTemperature, txtDate, txtCondition, txtWind,
-			txtHumidity, day1, day2, day3, day4;
+			txtHumidity, day1, day2, day3, day4, day5;
 	ImageView image;
 	ArrayList<String> weather = new ArrayList<String>();
 	ProgressDialog dialog;
@@ -50,7 +50,7 @@ public class WeatherFragment extends Fragment {
 			day2 = (TextView) view.findViewById(R.id.day2);
 			day3 = (TextView) view.findViewById(R.id.day3);
 			day4 = (TextView) view.findViewById(R.id.day4);
-
+			day5 = (TextView) view.findViewById(R.id.day5);
 			// getCoordinates getCoords = new getCoordinates(getActivity());
 			// title.setText(getCoords.getCoords()+"");
 			// title.setText(text)
@@ -102,8 +102,8 @@ public class WeatherFragment extends Fragment {
 		@SuppressWarnings("unchecked")
 		@Override
 		protected void onReceiveResult(int resultCode, Bundle resultData) {
-			List<WeatherItem> items2 = (List<WeatherItem>) resultData
-					.getSerializable(WoeidService.ITEMS);
+			List<WeatherItem> items2 = (List<WeatherItem>) resultData.getSerializable(WeatherService.ITEMS);
+			List<WeatherFItem> fitems = (List<WeatherFItem>) resultData.getSerializable(WeatherService.FITEMS);
 			if (items2 != null) {
 				for (WeatherItem i : items2) {
 					title.setText("Forecast for " + i.getCity() + ", "
@@ -123,11 +123,39 @@ public class WeatherFragment extends Fragment {
 					txtHumidity.setText("Humidity: " + i.getHumidity());
 
 				}
-			} else {
+			} 
+			else 
+			{
 				Toast.makeText(
 						getActivity(),
 						"An error occured while downloading the weather rss feed.",
 						Toast.LENGTH_LONG).show();
+			}
+			
+			if(fitems != null)
+			{			
+				for (int i = 0; i < fitems.size(); i++)
+				{
+					
+					switch(i)
+					{
+					case 0: 
+						day1.setText(fitems.get(i).getDay()+ " - "+fitems.get(i).getText()+" - "+ "High: " +fitems.get(i).getHigh()+" - " + "Low: "+fitems.get(i).getLow());
+						break;
+					case 1:
+						day2.setText(fitems.get(i).getDay()+ " - "+fitems.get(i).getText()+" - "+ "High: " +fitems.get(i).getHigh()+" - " + "Low: "+fitems.get(i).getLow());
+						break;
+					case 2:
+						day3.setText(fitems.get(i).getDay()+ " - "+fitems.get(i).getText()+" - "+ "High: " +fitems.get(i).getHigh()+" - " + "Low: "+fitems.get(i).getLow());
+						break;
+					case 3:
+						day4.setText(fitems.get(i).getDay()+ " - "+fitems.get(i).getText()+" - "+ "High: " +fitems.get(i).getHigh()+" - " + "Low: "+fitems.get(i).getLow());
+						break;
+					case 4:
+						day5.setText(fitems.get(i).getDay()+ " - "+fitems.get(i).getText()+" - "+ "High: " +fitems.get(i).getHigh()+" - " + "Low: "+fitems.get(i).getLow());
+						break;
+					}
+				}
 			}
 		}
 

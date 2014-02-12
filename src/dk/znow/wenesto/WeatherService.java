@@ -18,6 +18,7 @@ public class WeatherService extends IntentService
 {
 	private String queryString;
 	public static final String ITEMS = "items";
+	public static final String FITEMS = "fitems";
 	public static final String RECEIVER = "receiver";
 	public String woeid;
 	
@@ -35,11 +36,11 @@ public class WeatherService extends IntentService
 		woeid = intent.getStringExtra("woeid");
 
 		WoeidItem item;
-		//woeid = item.getWoeid();
 		Log.d("YAHU",woeid);
 		queryString = "http://weather.yahooapis.com/forecastrss?w="+woeid+"&u=c&#8221";
 		Log.v("WeatherService", "Service started");
 		List<WeatherItem> weatherItems = null;
+		List<WeatherFItem> weatherFItems = null;
 
 		Bundle bundle = new Bundle();
 		
@@ -47,23 +48,22 @@ public class WeatherService extends IntentService
 		{
 			WeatherParser parser = new WeatherParser();
 			weatherItems = parser.parse(getInputStream(queryString));
-			//WoeidItem item = new WoeidItem(woeid);
-			Log.v("Det går godt","YEAH!");
+			
+			WeatherFParser fparser = new WeatherFParser();
+			weatherFItems = fparser.parse(getInputStream(queryString));
+			
 		}
 		catch (XmlPullParserException exception)
 		{
 			Log.w(exception.getMessage(), exception);
-			Log.v("Det går galt her","1");
 		}
 		catch (IOException exception)
 		{
 			Log.w(exception.getMessage(), exception);
-			Log.v("Det går galt her","2");
 		}
 		
 		bundle.putSerializable(ITEMS, (Serializable) weatherItems);
-		//bundle.putSerializable("Key", 2);
-		bundle.putInt("key", 2);
+		bundle.putSerializable(FITEMS, (Serializable) weatherFItems);
 		ResultReceiver resultReceiver = intent.getParcelableExtra(RECEIVER);
 		resultReceiver.send(0, bundle);
 		

@@ -24,7 +24,7 @@ public final class R {
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f08001f;
+        public static final int action_settings=0x7f080020;
         public static final int border2=0x7f080018;
         public static final int conditionText=0x7f080015;
         public static final int dateText=0x7f080012;
@@ -32,6 +32,7 @@ public final class R {
         public static final int day2=0x7f08001c;
         public static final int day3=0x7f08001d;
         public static final int day4=0x7f08001e;
+        public static final int day5=0x7f08001f;
         public static final int footer_border=0x7f080011;
         public static final int forecastBorder=0x7f08001a;
         public static final int forecast_title=0x7f080019;

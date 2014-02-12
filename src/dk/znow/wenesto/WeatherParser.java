@@ -14,8 +14,9 @@ public class WeatherParser {
 
 	private final String ns = null;
 	String temperature, condition, date, humidity, wind, city, country, statuscode;
+	String fDay, fDate, fLow, fHigh, fText;
 
-	// Parse the inputstream as a list of News Items
+	// Parse the inputstream as a list of Weather Items
 	public List<WeatherItem> parse(InputStream inputStream)
 			throws XmlPullParserException, IOException {
 		try {
@@ -71,6 +72,14 @@ public class WeatherParser {
 			else if (name.equals("yweather:atmosphere")) 
 			{
 				humidity = getHumidity(xmlPullParser);
+			}
+			else if (name.equals("yweather:forecast"))
+			{
+				fDay = getFDay(xmlPullParser);
+				fDate = getFDate(xmlPullParser);
+				fLow = getFLow(xmlPullParser);
+				fHigh = getFHigh(xmlPullParser);
+				fText = getFText(xmlPullParser);
 			}
 			
 		}
@@ -138,5 +147,24 @@ public class WeatherParser {
 			throws IOException, XmlPullParserException {
 		return xmlPullParser.getAttributeValue(null, "code");
 	}
-
+	private String getFDay(XmlPullParser xmlPullParser)
+			throws IOException, XmlPullParserException {
+		return xmlPullParser.getAttributeValue(null, "day");
+	}
+	private String getFDate(XmlPullParser xmlPullParser)
+			throws IOException, XmlPullParserException {
+		return xmlPullParser.getAttributeValue(null, "date");
+	}
+	private String getFLow(XmlPullParser xmlPullParser)
+			throws IOException, XmlPullParserException {
+		return xmlPullParser.getAttributeValue(null, "low");
+	}
+	private String getFHigh(XmlPullParser xmlPullParser)
+			throws IOException, XmlPullParserException {
+		return xmlPullParser.getAttributeValue(null, "high");
+	}
+	private String getFText(XmlPullParser xmlPullParser)
+			throws IOException, XmlPullParserException {
+		return xmlPullParser.getAttributeValue(null, "text");
+	}
 }
