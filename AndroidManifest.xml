@@ -18,6 +18,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <service android:name="dk.znow.wenesto.NewsService" />
+        <service android:name="dk.znow.wenesto.StockService" />
         <service android:name="dk.znow.wenesto.WoeidService" />
         <service android:name="dk.znow.wenesto.WeatherService" />
 
