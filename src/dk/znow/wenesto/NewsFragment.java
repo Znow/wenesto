@@ -1,7 +1,9 @@
 package dk.znow.wenesto;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,6 +11,7 @@ import android.os.Handler;
 import android.os.ResultReceiver;
 import android.support.v4.app.Fragment;
 import android.text.Html;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,16 +41,18 @@ public class NewsFragment extends Fragment implements OnItemClickListener
 		if (view == null) 
 		{
             view = inflater.inflate(R.layout.newsfragment, container, false);
+            // Find the progressbar and listview
             progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
             listView = (ListView) view.findViewById(R.id.listView);
+            
+            // set a click listener
             listView.setOnItemClickListener(this);
+            
+            // Start hte service
             startService();
         } 
 		else 
 		{
-            // If we are returning from a configuration change:
-            // "view" is still attached to the previous view hierarchy
-            // so we need to remove it and re-attach it to the current one
             ViewGroup parent = (ViewGroup) view.getParent();
             parent.removeView(view);
         }
@@ -58,14 +63,15 @@ public class NewsFragment extends Fragment implements OnItemClickListener
 	// Start the news service to retrieve the news
 	private void startService() 
 	{
+		// Create a new intent of the news service class
         Intent intent = new Intent(getActivity(), NewsService.class);
+        
+        // push the NewsService into the intent
         intent.putExtra(NewsService.RECEIVER, resultReceiver);
+        
         getActivity().startService(intent);
     }
 
-	/**
-     * Once the {@link NewsService} finishes its task, the result is sent to this ResultReceiver.
-     */
     private final ResultReceiver resultReceiver = new ResultReceiver(new Handler()) 
     {
         @SuppressWarnings("unchecked")
@@ -74,18 +80,25 @@ public class NewsFragment extends Fragment implements OnItemClickListener
         {
             List<NewsItem> items = (List<NewsItem>) resultData.getSerializable(NewsService.ITEMS);
             
+            // If the items are not null and contains something
             if (items != null) 
             {
+            	// Create a news adapter with the activity and the items list
                 NewsAdapter adapter = new NewsAdapter(getActivity(), items);
+                
+                // Set the adapter to the list view
                 listView.setAdapter(adapter);
             } 
             else 
             {
-                Toast.makeText(getActivity(), "An error occured while downloading the rss feed.",
+                Toast.makeText(getActivity(), "An error occured while downloading the news rss feed.",
                 Toast.LENGTH_LONG).show();
             }
             
+            // Remove the progressbar
             progressBar.setVisibility(View.GONE);
+            
+            // Show the listview
             listView.setVisibility(View.VISIBLE);
         }
     };
@@ -97,16 +110,12 @@ public class NewsFragment extends Fragment implements OnItemClickListener
         NewsAdapter adapter = (NewsAdapter) parent.getAdapter();
         
         // creates a news item from the item clicked in the list, with the position
-        NewsItem item = (NewsItem) adapter.getItem(position);
-        
-        // gets the item link and makes a URI of it
-        //Uri uri = Uri.parse(item.getLink());
-        
-        // Creates a new intent with the URI
-        //Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        NewsItem item = (NewsItem) adapter.getItem(position);	
        
+        // Create a new intent
         Intent newsIntent = new Intent();
         
+        // set the class to our activity class
         newsIntent.setClass(getActivity(), NewsActivity.class);
         
         //newsIntent.putExtra("image", item.getImageUrl());
@@ -114,6 +123,7 @@ public class NewsFragment extends Fragment implements OnItemClickListener
         newsIntent.putExtra("description", Html.fromHtml(item.getDescription()).toString());
         newsIntent.putExtra("pubDate", item.getPubDate());
         
+        // start the activity with the intent
         startActivity(newsIntent);
     }
 }

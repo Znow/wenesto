@@ -14,56 +14,40 @@ import android.os.Bundle;
 import android.os.ResultReceiver;
 import android.util.Log;
 
-public class WeatherService extends IntentService 
-{
-	private String queryString;
+public class StockService extends IntentService 
+{	
+		
+		private static final String STOCKS_LINK = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20csv%20where%20url%3D%22http%3A%2F%2Ffinance.yahoo.com%2Fd%2Fquotes.csv%3Fs%3DCARL-B.CO%2BCHR.CO%2BCOLOB.CO%2BDANSKE.CO%2BDSV.CO%2BFLS.CO%2BGEN.CO%2BGN.CO%2BJYSK.CO%2BMAERSK-A.CO%2BMAERSK-B.CO%2BNDA-DKK.CO%2BNOVO-B.CO%2BNZYM-B.CO%2BPNDORA.CO%2BTDC.CO%2BTOP.CO%2BTRYG.CO%2BVWS.CO%2BWDH.CO%26f%3Dnov%22%3B&diagnostics=true";
 	public static final String ITEMS = "items";
 	public static final String RECEIVER = "receiver";
-	public String woeid;
 	
-	public WeatherService()
+	public StockService()
 	{
-		super("WeatherService");
-		Log.v("Wuhuuu","Yes");
+		super("StockService");
 	}
 	
 	@Override
 	protected void onHandleIntent(Intent intent) 
 	{
-<<<<<<< HEAD
-		woeid = intent.getStringExtra("woeid");
-=======
-		WoeidItem item;
-		//woeid = item.getWoeid();
->>>>>>> b5e066f5f02ccaddc2a3ce82fdf877b40c1ab98e
-		Log.d("YAHU",woeid);
-		queryString = "http://weather.yahooapis.com/forecastrss?w="+woeid+"&u=c&#8221";
-		Log.v("WeatherService", "Service started");
-		List<WeatherItem> weatherItems = null;
-
+		Log.d(Constants.TAG, "Service started");
+		List<StockItem> stockItems = null;
 		Bundle bundle = new Bundle();
 		
 		try
 		{
-			WeatherParser parser = new WeatherParser();
-			weatherItems = parser.parse(getInputStream(queryString));
-			//WoeidItem item = new WoeidItem(woeid);
-			Log.v("Det går godt","YEAH!");
+			StockParser parser = new StockParser();
+			stockItems = parser.parse(getInputStream(STOCKS_LINK));
 		}
 		catch (XmlPullParserException exception)
 		{
 			Log.w(exception.getMessage(), exception);
-			Log.v("Det går galt her","1");
 		}
 		catch (IOException exception)
 		{
 			Log.w(exception.getMessage(), exception);
-			Log.v("Det går galt her","2");
 		}
 		
-		bundle.putSerializable(ITEMS, (Serializable) weatherItems);
-		//bundle.putSerializable("Key", 2);
-		bundle.putInt("key", 2);
+		bundle.putSerializable(ITEMS, (Serializable) stockItems);
 		ResultReceiver resultReceiver = intent.getParcelableExtra(RECEIVER);
 		resultReceiver.send(0, bundle);
 		
@@ -86,5 +70,4 @@ public class WeatherService extends IntentService
             return null;
 		}
 	}
-
 }
