@@ -48,14 +48,14 @@ public class WeatherFragment extends Fragment
             day3 = (TextView) view.findViewById(R.id.day3);
             day4 = (TextView) view.findViewById(R.id.day4);
             
-            getCoordinates getCoords = new getCoordinates(getActivity());
+            //getCoordinates getCoords = new getCoordinates(getActivity());
             //title.setText(getCoords.getCoords()+"");
             //title.setText(text)
             
             image = (ImageView) view.findViewById(R.id.icon);
             
             
-            startService();
+            //startService();
             getWoeid();
         } 
 		else 
@@ -79,6 +79,7 @@ public class WeatherFragment extends Fragment
 		Intent intent = new Intent(getActivity(), WoeidService.class);
         intent.putExtra(WoeidService.RECEIVER, resultReceiver);
         getActivity().startService(intent);
+        Log.d("Noob","Noob");
 	}
 	
 	private final ResultReceiver resultReceiver = new ResultReceiver(new Handler()) 
@@ -90,7 +91,9 @@ public class WeatherFragment extends Fragment
             List<WoeidItem> items = (List<WoeidItem>) resultData.getSerializable(WoeidService.ITEMS);
             //String str = (String) resultData.getSerializable(WoeidService.ITEMS);
             
-            Log.d("Woeid","noob");
+            
+            
+            Log.v("Woeid","noob");
             for(WoeidItem i : items)
             {
             	Log.d("Woeid", i.getWoeid());

@@ -90,8 +90,6 @@ public class getCoordinates extends Service implements LocationListener{
 	                                Log.d("Latitude",latitude+"");
 	                                Log.d("Longitude",longitude+"");
 	                            }
-	                            else
-	                            	Log.d("SUT MIN","DILLER");
 	                        }
 	                    }
 	                }
@@ -106,14 +104,23 @@ public class getCoordinates extends Service implements LocationListener{
 	        return location;
 	    }
 	    
-	   public String getCoords()
+	   public String getLat()
 	    {
-		   String str ="";
+		   String lat ="";
 	    	if (location != null)
 	    	{
-	    		str = latitude+","+longitude;
+	    		lat = latitude+"";
 	    	}
-	    	return str;
+	    	return lat;
+	    }
+	   public String getLong()
+	    {
+		   String longi ="";
+	    	if (location != null)
+	    	{
+	    		longi = longitude+"";
+	    	}
+	    	return longi;
 	    }
 
 	@Override

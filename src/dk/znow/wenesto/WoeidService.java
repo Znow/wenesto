@@ -23,14 +23,16 @@ public class WoeidService extends IntentService
 	
 	public WoeidService()
 	{
-		super("WeatherService");
+		super("WoeidService");
+		Log.v("Wuhuuu","Yes");
 	}
 	
 	@Override
 	protected void onHandleIntent(Intent intent) 
 	{
-		queryString = "http://where.yahooapis.com/geocode?q="+MainActivity.coords+"&appid=y0vCd27i";
-		Log.d("WoeidService", "Service started");
+		//queryString = "http://where.yahooapis.com/geocode?q="+MainActivity.coords+"&appid=y0vCd27i";
+		queryString = "http://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20FROM%20geo.placefinder%20WHERE%20text%3D%22{"+MainActivity.latitude+"%2C"+MainActivity.longitude+"%22%20and%20gflags%3D%22R%22";
+		Log.v("WoeidService", "Service started");
 		List<WoeidItem> woeidItems = null;
 
 		Bundle bundle = new Bundle();
@@ -40,14 +42,17 @@ public class WoeidService extends IntentService
 			WoeidParser parser = new WoeidParser();
 			woeidItems = parser.parse(getInputStream(queryString));
 			//WoeidItem item = new WoeidItem(woeid);
+			Log.v("Det går godt","YEAH!");
 		}
 		catch (XmlPullParserException exception)
 		{
 			Log.w(exception.getMessage(), exception);
+			Log.v("Det går galt her","1");
 		}
 		catch (IOException exception)
 		{
 			Log.w(exception.getMessage(), exception);
+			Log.v("Det går galt her","2");
 		}
 		
 		bundle.putSerializable(ITEMS, (Serializable) woeidItems);

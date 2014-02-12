@@ -31,7 +31,7 @@ public class WoeidParser {
 	//
 	private List<WoeidItem> readFeed(XmlPullParser xmlPullParser)
 			throws XmlPullParserException, IOException {
-		xmlPullParser.require(XmlPullParser.START_TAG, null, "rss");
+		xmlPullParser.require(XmlPullParser.START_TAG, null, "woeid");
 		String woeid = null;
 		List<WoeidItem> items = new ArrayList<WoeidItem>();
 
@@ -58,9 +58,9 @@ public class WoeidParser {
 	// Read the link tags and return the result
 	private String readWoeid(XmlPullParser xmlPullParser)
 			throws XmlPullParserException, IOException {
-		xmlPullParser.require(XmlPullParser.START_TAG, ns, "link");
+		xmlPullParser.require(XmlPullParser.START_TAG, ns, "woeid");
 		String woeid = readText(xmlPullParser);
-		xmlPullParser.require(XmlPullParser.END_TAG, ns, "link");
+		xmlPullParser.require(XmlPullParser.END_TAG, ns, "woeid");
 
 		return woeid;
 	}
