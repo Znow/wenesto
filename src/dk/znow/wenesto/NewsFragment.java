@@ -41,7 +41,7 @@ public class NewsFragment extends Fragment implements OnItemClickListener
             progressBar = (ProgressBar) view.findViewById(R.id.progressBar);
             listView = (ListView) view.findViewById(R.id.listView);
             listView.setOnItemClickListener(this);
-            //startService();
+            startService();
         } 
 		else 
 		{
