@@ -72,6 +72,9 @@ public class WeatherFragment extends Fragment
 	
 	public void startService()
 	{
+		Intent intent = new Intent(getActivity(), WeatherService.class);
+		intent.putExtra(WeatherService.RECEIVER,  resultReceiver);
+		getActivity().startService(intent);
 		
 	}
 	public void getWoeid()
