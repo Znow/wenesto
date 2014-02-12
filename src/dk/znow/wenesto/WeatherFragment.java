@@ -1,6 +1,5 @@
 package dk.znow.wenesto;
 
-import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
@@ -72,7 +71,6 @@ public class WeatherFragment extends Fragment {
 	}
 
 	public void startService() {
-		Log.w("Det logger", "Også her");
 		Intent intent = new Intent(getActivity(), WeatherService.class);
 		intent.putExtra(WeatherService.RECEIVER, resultReceiver2);
 		intent.putExtra("woeid", woeid);
@@ -83,7 +81,6 @@ public class WeatherFragment extends Fragment {
 		Intent intent = new Intent(getActivity(), WoeidService.class);
 		intent.putExtra(WoeidService.RECEIVER, resultReceiver);
 		getActivity().startService(intent);
-		Log.d("Noob", "Noob");
 	}
 
 	private final ResultReceiver resultReceiver = new ResultReceiver(
@@ -115,8 +112,7 @@ public class WeatherFragment extends Fragment {
 					{
 						String url = "http://l.yimg.com/a/i/us/we/52/"+i.getStatusCode()+".gif";
 						image.setTag(url);
-						//icon = BitmapFactory.decodeStream((InputStream)new URL("http://l.yimg.com/a/i/us/we/52/"+i.getStatusCode()+".gif").getContent());
-						image.setImageBitmap(myBitMap);
+						new DownloadBitMap().execute(image);
 					}
 					catch(Exception e){}
 
