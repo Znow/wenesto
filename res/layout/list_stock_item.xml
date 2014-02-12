@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="5dip" >
     
     
     <TextView 
@@ -14,16 +16,37 @@
     <TextView 
 		    android:layout_width="match_parent"
 		    android:layout_height="match_parent"
+		    android:id="@+id/itemVolume"
+		    android:textSize="12sp"
+		    android:minHeight="10sp"
+		    android:layout_marginTop="40sp" />
+    
+    <TextView 
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent"
 		    android:id="@+id/itemOpen"
 		    android:textSize="12sp"
-		    android:minHeight="50sp" />
+		    android:minHeight="10sp"
+		    android:layout_marginTop="40sp"
+		    android:layout_marginLeft="100sp" />
     
     <TextView 
 		    android:layout_width="match_parent"
 		    android:layout_height="match_parent"
 		    android:id="@+id/itemChange"
 		    android:textSize="12sp"
-		    android:minHeight="50sp" />
+		    android:minHeight="10sp"
+		    android:layout_marginTop="40sp"
+		    android:layout_marginLeft="200sp" />
+    
+    <TextView 
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent"
+		    android:id="@+id/itemLastTrade"
+		    android:textSize="12sp"
+		    android:minHeight="10sp"
+		    android:layout_marginTop="40sp"
+		    android:layout_marginLeft="300sp" />
     
 
 </RelativeLayout>

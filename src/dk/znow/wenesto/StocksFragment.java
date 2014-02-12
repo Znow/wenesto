@@ -85,7 +85,7 @@ public class StocksFragment extends Fragment
 	            } 
 	            else 
 	            {
-	                Toast.makeText(getActivity(), "An error occured while downloading the rss feed.",
+	                Toast.makeText(getActivity(), "An error occured while downloading the stock rss feed.",
 	                Toast.LENGTH_LONG).show();
 	            }
 	            

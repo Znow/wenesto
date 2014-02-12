@@ -17,7 +17,7 @@ import android.util.Log;
 public class StockService extends IntentService 
 {	
 		
-	private static final String STOCKS_LINK = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20csv%20where%20url%3D%22http%3A%2F%2Ffinance.yahoo.com%2Fd%2Fquotes.csv%3Fs%3DCARL-B.CO%2BCHR.CO%2BCOLOB.CO%2BDANSKE.CO%2BDSV.CO%2BFLS.CO%2BGEN.CO%2BGN.CO%2BJYSK.CO%2BMAERSK-A.CO%2BMAERSK-B.CO%2BNDA-DKK.CO%2BNOVO-B.CO%2BNZYM-B.CO%2BPNDORA.CO%2BTDC.CO%2BTOP.CO%2BTRYG.CO%2BVWS.CO%2BWDH.CO%26f%3Dnov%22%3B&diagnostics=true";
+	private static final String STOCKS_LINK = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20csv%20where%20url%3D%22http%3A%2F%2Ffinance.yahoo.com%2Fd%2Fquotes.csv%3Fs%3DCARL-B.CO%2BCHR.CO%2BCOLOB.CO%2BDANSKE.CO%2BDSV.CO%2BFLS.CO%2BGEN.CO%2BGN.CO%2BJYSK.CO%2BMAERSK-A.CO%2BMAERSK-B.CO%2BNDA-DKK.CO%2BNOVO-B.CO%2BNZYM-B.CO%2BPNDORA.CO%2BTDC.CO%2BTOP.CO%2BTRYG.CO%2BVWS.CO%2BWDH.CO%26f%3Dnvop2l1%22%3B&diagnostics=true";
 	public static final String ITEMS = "items";
 	public static final String RECEIVER = "receiver";
 	
