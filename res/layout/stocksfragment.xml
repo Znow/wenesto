@@ -4,5 +4,22 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
+    <ListView
+        android:visibility="gone"
+        android:id="@+id/listView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:padding="10sp"
+        android:minHeight="20sp"
+        android:textSize="20sp">
+    </ListView>
+ 
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+    
 
 </LinearLayout>

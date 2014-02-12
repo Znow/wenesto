@@ -10,7 +10,8 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import android.util.Xml;
 
-public class NewsParser {
+public class NewsParser 
+{
 	private final String ns = null;
 	
 	// Parse the inputstream as a list of News Items

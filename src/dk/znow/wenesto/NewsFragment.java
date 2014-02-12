@@ -1,5 +1,8 @@
 package dk.znow.wenesto;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import android.content.Intent;
@@ -9,6 +12,7 @@ import android.os.Handler;
 import android.os.ResultReceiver;
 import android.support.v4.app.Fragment;
 import android.text.Html;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -103,7 +107,7 @@ public class NewsFragment extends Fragment implements OnItemClickListener
         //Uri uri = Uri.parse(item.getLink());
         
         // Creates a new intent with the URI
-        //Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        //Intent intent = new Intent(Intent.ACTION_VIEW, uri);		
        
         Intent newsIntent = new Intent();
         

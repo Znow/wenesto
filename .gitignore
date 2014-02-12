@@ -46,3 +46,7 @@ bin/classes/dk/znow/wenesto/NewsService.class
 bin/classes/dk/znow/wenesto/getCoordinates.class
 
 *.class
+
+bin/classes/dk/znow/wenesto/NewsAdapter.class
+
+bin/classes/dk/znow/wenesto/StocksFragment.class
