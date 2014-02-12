@@ -2,48 +2,52 @@ package dk.znow.wenesto;
 
 public class WeatherItem {
 	
-	private final String _day;
+	private final String _temp;
+	private final String _condition;
 	private final String _date;
-	private final String _low;
-	private final String _high;
-	private final String _text;
+	private final String _humidity;
+	private final String _wind;
+	private final String _location;
+	private final String _country;
 	
-	public WeatherItem(String day, String date, String low, String high, String text)
+	public WeatherItem(String temp, String condition, String date, String humidity, String wind, String location, String country)
 	{
-		_day = day;
+		_temp = temp;
+		_condition = condition;
 		_date = date;
-		_low = low;
-		_high = high;
-		_text = text;
-	}
-	public WeatherItem(WeatherItem wi)
-	{
-		_day = wi.getDay();
-		_date = wi.getDate();
-		_low = wi.getLow();
-		_high = wi.getHigh();
-		_text = wi.getText();
+		_humidity = humidity;
+		_wind = wind;
+		_location = location;
+		_country = country;
 	}
 	
-	public String getDay()
+	public String getTemp()
 	{
-		return _day;
+		return _temp;
+	}
+	public String getCondition()
+	{
+		return _condition;
 	}
 	public String getDate()
 	{
 		return _date;
 	}
-	public String getLow()
+	public String getHumidity()
 	{
-		return _low;
+		return _humidity;
 	}
-	public String getHigh()
+	public String getWind()
 	{
-		return _high;
+		return _wind;
 	}
-	public String getText()
+	public String getLocation()
 	{
-		return _text;
+		return _location;
+	}
+	public String getCountry()
+	{
+		return _country;
 	}
 
 }
