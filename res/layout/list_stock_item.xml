@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+    
+    <TextView 
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent"
+		    android:id="@+id/itemTitle"
+		    android:textSize="20sp"
+		    android:minHeight="50sp" />
+    
+    <TextView 
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent"
+		    android:id="@+id/itemOpen"
+		    android:textSize="12sp"
+		    android:minHeight="50sp" />
+    
+    <TextView 
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent"
+		    android:id="@+id/itemChange"
+		    android:textSize="12sp"
+		    android:minHeight="50sp" />
+    
+
+</RelativeLayout>

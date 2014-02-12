@@ -45,10 +45,12 @@ public class StockAdapter extends BaseAdapter {
 		
 		if (convertView == null)
 		{
-			convertView = View.inflate(context, R.layout.list_news_item, null);
+			convertView = View.inflate(context, R.layout.list_stock_item, null);
 			
 			// Set the item title
 			viewHolder.itemTitle = (TextView) convertView.findViewById(R.id.itemTitle);
+			viewHolder.itemOpen = (TextView) convertView.findViewById(R.id.itemOpen);
+			viewHolder.itemChange = (TextView) convertView.findViewById(R.id.itemChange);
 	        
 	        convertView.setTag(viewHolder);			
 		}
@@ -57,7 +59,9 @@ public class StockAdapter extends BaseAdapter {
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
 		
-		viewHolder.itemTitle.setText(items.get(position).getTitle());		
+		viewHolder.itemTitle.setText(items.get(position).getTitle());
+		viewHolder.itemOpen.setText(items.get(position).getOpen());
+		viewHolder.itemChange.setText(items.get(position).getChange());
 		
 		return convertView;
 	}
@@ -65,6 +69,8 @@ public class StockAdapter extends BaseAdapter {
 	// Holds the item title in a text view
 	static class ViewHolder {
 		TextView itemTitle;
+		TextView itemOpen;
+		TextView itemChange;
     }
 	
 }
