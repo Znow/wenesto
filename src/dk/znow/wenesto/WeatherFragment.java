@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class WeatherFragment extends Fragment
 {
@@ -106,7 +107,23 @@ public class WeatherFragment extends Fragment
         		break;
         	case 2://WeatherService
                 List<WeatherItem> items2 = (List<WeatherItem>) resultData.getSerializable(WoeidService.ITEMS);
-                
+                if (items2 != null) 
+                {
+                	for(WeatherItem i : items2)
+                	{
+                		title.setText("Forecast for "+i.getCity()+","+i.getCountry());
+                		txtTemperature.setText(i.getTemp()+" °C");
+                		txtCondition.setText(i.getCondition());
+                		txtWind.setText(i.getWind()+" km/h");
+                		txtHumidity.setText(i.getHumidity());
+                		
+                	}
+                } 
+                else 
+                {
+                    Toast.makeText(getActivity(), "An error occured while downloading the news rss feed.",
+                    Toast.LENGTH_LONG).show();
+                }
         		break;
         		
         	default:

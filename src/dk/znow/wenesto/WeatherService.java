@@ -30,18 +30,12 @@ public class WeatherService extends IntentService
 	@Override
 	protected void onHandleIntent(Intent intent) 
 	{
-<<<<<<< HEAD
+
 
 		woeid = intent.getStringExtra("woeid");
 
 		WoeidItem item;
 		//woeid = item.getWoeid();
-
-=======
-		woeid = intent.getStringExtra("woeid");
-		WoeidItem item;
-		//woeid = item.getWoeid();
->>>>>>> d9e55ee160a12862d7e22d06ea143d600c2117ae
 		Log.d("YAHU",woeid);
 		queryString = "http://weather.yahooapis.com/forecastrss?w="+woeid+"&u=c&#8221";
 		Log.v("WeatherService", "Service started");

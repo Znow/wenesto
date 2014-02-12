@@ -1,4 +1,5 @@
 eclipse.preferences.version=1
+encoding//src/dk/znow/wenesto/WeatherFragment.java=UTF-8
 encoding//src/dk/znow/wenesto/WeatherService.java=UTF-8
 encoding//src/dk/znow/wenesto/WoeidService.java=UTF-8
 encoding//src/dk/znow/wenesto/getCoordinates.java=UTF-8

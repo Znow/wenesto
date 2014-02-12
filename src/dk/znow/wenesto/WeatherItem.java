@@ -7,17 +7,17 @@ public class WeatherItem {
 	private final String _date;
 	private final String _humidity;
 	private final String _wind;
-	private final String _location;
+	private final String _city;
 	private final String _country;
 	
-	public WeatherItem(String temp, String condition, String date, String humidity, String wind, String location, String country)
+	public WeatherItem(String temp, String condition, String date, String humidity, String wind, String city, String country)
 	{
 		_temp = temp;
 		_condition = condition;
 		_date = date;
 		_humidity = humidity;
 		_wind = wind;
-		_location = location;
+		_city = city;
 		_country = country;
 	}
 	
@@ -41,9 +41,9 @@ public class WeatherItem {
 	{
 		return _wind;
 	}
-	public String getLocation()
+	public String getCity()
 	{
-		return _location;
+		return _city;
 	}
 	public String getCountry()
 	{
