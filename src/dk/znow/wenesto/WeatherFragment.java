@@ -57,6 +57,7 @@ public class WeatherFragment extends Fragment
             
             //startService();
             getWoeid();
+            startService();
         } 
 		else 
 		{
@@ -74,6 +75,7 @@ public class WeatherFragment extends Fragment
 	{
 		Intent intent = new Intent(getActivity(), WeatherService.class);
 		intent.putExtra(WeatherService.RECEIVER,  resultReceiver);
+		intent.putExtra("woeid", woeid);
 		getActivity().startService(intent);
 		
 	}
@@ -91,18 +93,25 @@ public class WeatherFragment extends Fragment
         @Override
         protected void onReceiveResult(int resultCode, Bundle resultData) 
         {
-            List<WoeidItem> items = (List<WoeidItem>) resultData.getSerializable(WoeidService.ITEMS);
-            //String str = (String) resultData.getSerializable(WoeidService.ITEMS);
-            
-//            if (items != null) 
-//            {
-//                NewsAdapter adapter = new NewsAdapter(getActivity(), items);
-//            } 
-//            else 
-//            {
-//                Toast.makeText(getActivity(), "An error occured while downloading the rss feed.",
-//                Toast.LENGTH_LONG).show();
-//            }
+        	int key = resultData.getInt("key");
+        	switch(key)
+        	{
+        	case 1://WoeidService
+                List<WoeidItem> items = (List<WoeidItem>) resultData.getSerializable(WoeidService.ITEMS);
+                
+                for(WoeidItem i : items)
+                {
+                	woeid = i.getWoeid();
+                }
+        		break;
+        	case 2://WeatherService
+                List<WeatherItem> items2 = (List<WeatherItem>) resultData.getSerializable(WoeidService.ITEMS);
+                
+        		break;
+        		
+        	default:
+        		break;
+        	}
         }
     };
 

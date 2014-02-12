@@ -30,8 +30,7 @@ public class WeatherService extends IntentService
 	@Override
 	protected void onHandleIntent(Intent intent) 
 	{
-		WoeidItem item;
-		woeid = item.getWoeid();
+		woeid = intent.getStringExtra("woeid");
 		Log.d("YAHU",woeid);
 		queryString = "http://weather.yahooapis.com/forecastrss?w="+woeid+"&u=c&#8221";
 		Log.v("WeatherService", "Service started");
@@ -58,6 +57,8 @@ public class WeatherService extends IntentService
 		}
 		
 		bundle.putSerializable(ITEMS, (Serializable) weatherItems);
+		//bundle.putSerializable("Key", 2);
+		bundle.putInt("key", 2);
 		ResultReceiver resultReceiver = intent.getParcelableExtra(RECEIVER);
 		resultReceiver.send(0, bundle);
 		

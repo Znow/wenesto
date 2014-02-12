@@ -56,6 +56,8 @@ public class WoeidService extends IntentService
 		}
 		
 		bundle.putSerializable(ITEMS, (Serializable) woeidItems);
+		//bundle.putSerializable("Key", 1);
+		bundle.putInt("key", 1);
 		ResultReceiver resultReceiver = intent.getParcelableExtra(RECEIVER);
 		resultReceiver.send(0, bundle);
 		

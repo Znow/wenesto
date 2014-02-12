@@ -24,7 +24,7 @@ public class MainActivity extends FragmentActivity implements TabListener, Locat
 	public static LocationManager locationManager;
 	Location location;
 	String provider;
-	public static String coords;
+	//public static String woeid;
 	public static String longitude;
 	public static String latitude;
 	
