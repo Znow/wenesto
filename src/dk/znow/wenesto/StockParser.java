@@ -103,9 +103,9 @@ public class StockParser
 	// Read the title tag and return the result
     private String readTitle(XmlPullParser xmlPullParser) throws XmlPullParserException, IOException 
     {
-    	xmlPullParser.require(XmlPullParser.START_TAG, ns, "title");
+    	xmlPullParser.require(XmlPullParser.START_TAG, ns, "col0");
         String title = readText(xmlPullParser);
-        xmlPullParser.require(XmlPullParser.END_TAG, ns, "title");
+        xmlPullParser.require(XmlPullParser.END_TAG, ns, "col0");
         
         return title;
     }

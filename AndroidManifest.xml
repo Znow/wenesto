@@ -43,5 +43,9 @@
             android:name="dk.znow.wenesto.NewsActivity"
             android:label="@string/title_activity_news" >
         </activity>
+        <activity
+            android:name="dk.znow.wenesto.StockFragment"
+            android:label="@string/title_activity_stock_fragment" >
+        </activity>
     </application>
 </manifest>
