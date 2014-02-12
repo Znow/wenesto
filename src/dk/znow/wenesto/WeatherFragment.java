@@ -91,15 +91,6 @@ public class WeatherFragment extends Fragment
             List<WoeidItem> items = (List<WoeidItem>) resultData.getSerializable(WoeidService.ITEMS);
             //String str = (String) resultData.getSerializable(WoeidService.ITEMS);
             
-            
-            
-            Log.v("Woeid","noob");
-            for(WoeidItem i : items)
-            {
-            	Log.d("Woeid", i.getWoeid());
-            	Log.w("Woeid", i.getWoeid());
-            }
-            
 //            if (items != null) 
 //            {
 //                NewsAdapter adapter = new NewsAdapter(getActivity(), items);

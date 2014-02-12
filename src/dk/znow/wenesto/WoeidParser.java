@@ -31,7 +31,7 @@ public class WoeidParser {
 	//
 	private List<WoeidItem> readFeed(XmlPullParser xmlPullParser)
 			throws XmlPullParserException, IOException {
-		xmlPullParser.require(XmlPullParser.START_TAG, null, "woeid");
+		xmlPullParser.require(XmlPullParser.START_TAG, null, "query");
 		String woeid = null;
 		List<WoeidItem> items = new ArrayList<WoeidItem>();
 

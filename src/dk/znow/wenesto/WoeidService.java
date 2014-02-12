@@ -31,7 +31,7 @@ public class WoeidService extends IntentService
 	protected void onHandleIntent(Intent intent) 
 	{
 		//queryString = "http://where.yahooapis.com/geocode?q="+MainActivity.coords+"&appid=y0vCd27i";
-		queryString = "http://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20FROM%20geo.placefinder%20WHERE%20text%3D%22{"+MainActivity.latitude+"%2C"+MainActivity.longitude+"%22%20and%20gflags%3D%22R%22";
+		queryString = "http://query.yahooapis.com/v1/public/yql?q=SELECT%20*%20FROM%20geo.placefinder%20WHERE%20text%3D%22"+MainActivity.latitude+"%2C"+MainActivity.longitude+"%22%20and%20gflags%3D%22R%22";
 		Log.v("WoeidService", "Service started");
 		List<WoeidItem> woeidItems = null;
 
