@@ -50,7 +50,7 @@ public class NewsAdapter extends BaseAdapter {
 			
 			// Set the item title
 			viewHolder.itemTitle = (TextView) convertView.findViewById(R.id.itemTitle);
-			viewHolder.itemImage = (ImageView) convertView.findViewById(R.id.itemImage);
+			//viewHolder.itemImage = (ImageView) convertView.findViewById(R.id.itemImage);
 	        
 	        convertView.setTag(viewHolder);			
 		}
@@ -68,7 +68,7 @@ public class NewsAdapter extends BaseAdapter {
 	
 	// Holds the item title in a text view
 	static class ViewHolder {
-        ImageView itemImage;
+        //ImageView itemImage;
 		TextView itemTitle;
     }
 	
