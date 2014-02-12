@@ -13,7 +13,7 @@ import android.util.Xml;
 public class WeatherParser {
 
 	private final String ns = null;
-	String temperature, condition, date, humidity, wind, city, country;
+	String temperature, condition, date, humidity, wind, city, country, statuscode;
 
 	// Parse the inputstream as a list of News Items
 	public List<WeatherItem> parse(InputStream inputStream)
@@ -49,6 +49,7 @@ public class WeatherParser {
 				condition = getCondition(xmlPullParser);
 				temperature = getTemp(xmlPullParser);
 				date = getDate(xmlPullParser);
+				statuscode = getStatusCode(xmlPullParser);
 			}
 			// else if (name.equals("yweather:forecast"))
 			// {
@@ -73,7 +74,7 @@ public class WeatherParser {
 			}
 			
 		}
-		weatheritem = new WeatherItem(temperature, condition, date,humidity, wind, city, country);
+		weatheritem = new WeatherItem(temperature, condition, date,humidity, wind, city, country, statuscode);
 		items.add(weatheritem);
 		temperature = null;
 		condition = null;
@@ -132,6 +133,10 @@ public class WeatherParser {
 	private String getCountry(XmlPullParser xmlPullParser)
 			throws IOException, XmlPullParserException {
 		return xmlPullParser.getAttributeValue(null, "country");
+	}
+	private String getStatusCode(XmlPullParser xmlPullParser)
+			throws IOException, XmlPullParserException {
+		return xmlPullParser.getAttributeValue(null, "code");
 	}
 
 }

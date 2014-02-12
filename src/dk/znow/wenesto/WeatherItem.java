@@ -9,8 +9,9 @@ public class WeatherItem {
 	private final String _wind;
 	private final String _city;
 	private final String _country;
+	private final String _statuscode;
 	
-	public WeatherItem(String temp, String condition, String date, String humidity, String wind, String city, String country)
+	public WeatherItem(String temp, String condition, String date, String humidity, String wind, String city, String country, String statuscode)
 	{
 		_temp = temp;
 		_condition = condition;
@@ -19,6 +20,7 @@ public class WeatherItem {
 		_wind = wind;
 		_city = city;
 		_country = country;
+		_statuscode = statuscode;
 	}
 	
 	public String getTemp()
@@ -48,6 +50,10 @@ public class WeatherItem {
 	public String getCountry()
 	{
 		return _country;
+	}
+	public String getStatusCode()
+	{
+		return _statuscode;
 	}
 
 }
