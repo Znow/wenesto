@@ -27,7 +27,16 @@
 		    android:layout_height="match_parent"
 		    android:id="@+id/itemTitle"
 		    android:textSize="20sp"
-		    android:minHeight="50sp" />
+		    android:minHeight="50sp"
+		    android:layout_toRightOf="@id/thumbnail"
+		     />
+		
+		<TextView 
+		    android:layout_width="match_parent"
+		    android:layout_height="match_parent"
+		    android:id="@+id/itemDate"
+		    android:textSize="12sp"
+		    android:layout_marginTop="50sp" />
 
 		    
 </RelativeLayout>

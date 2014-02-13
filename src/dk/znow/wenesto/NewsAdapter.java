@@ -1,5 +1,6 @@
 package dk.znow.wenesto;
 
+import java.net.URL;
 import java.util.List;
 
 import android.content.Context;
@@ -50,7 +51,8 @@ public class NewsAdapter extends BaseAdapter {
 			
 			// Set the item title
 			viewHolder.itemTitle = (TextView) convertView.findViewById(R.id.itemTitle);
-			//viewHolder.itemImage = (ImageView) convertView.findViewById(R.id.itemImage);
+			viewHolder.itemDate = (TextView) convertView.findViewById(R.id.itemDate);
+			viewHolder.itemImage = (ImageView) convertView.findViewById(R.id.itemImage);
 	        
 	        convertView.setTag(viewHolder);			
 		}
@@ -59,17 +61,24 @@ public class NewsAdapter extends BaseAdapter {
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
 		
-		viewHolder.itemTitle.setText(items.get(position).getTitle() + items.get(position).getPubDate());
-		//viewHolder.itemImage.setText(items.get(position).getImage());
-		
+		viewHolder.itemTitle.setText(items.get(position).getTitle());
+		viewHolder.itemDate.setText(items.get(position).getPubDate());
+		try
+		{
+			viewHolder.itemImage.setTag(items.get(position).getImageUrl());
+			new DownloadBitMap().execute(viewHolder.itemImage);
+		}
+		catch(Exception e){}
+				
 		
 		return convertView;
 	}
 	
 	// Holds the item title in a text view
 	static class ViewHolder {
-        //ImageView itemImage;
+        ImageView itemImage;
 		TextView itemTitle;
+		TextView itemDate;
     }
 	
 }

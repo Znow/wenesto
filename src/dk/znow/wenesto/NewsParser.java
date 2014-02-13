@@ -51,13 +51,8 @@ public class NewsParser
             
             String name = xmlPullParser.getName();
             
-            /*if (name.equals("image"))
-            {
-            	
-            	imageUrl = readImageUrl(xmlPullParser);
-            	
-            }
-            else*/ if (name.equals("title")) 
+            
+            if (name.equals("title")) 
             {
                 title = readTitle(xmlPullParser);
             } 
@@ -73,18 +68,22 @@ public class NewsParser
             {
             	pubDate = readPubDate(xmlPullParser);
             }
+            else if (name.equals("media:content"))
+            {
+            	imageUrl = readImageUrl(xmlPullParser);
+            }
             
             //imageUrl = "http://upload.wikimedia.org/wikipedia/commons/d/d3/Nelumno_nucifera_open_flower_-_botanic_garden_adelaide2.jpg";
             
             if (title != null && description != null && link != null && pubDate != null) 
             {
-                NewsItem item = new NewsItem(title, description, link, pubDate);
+                NewsItem item = new NewsItem(title, description, link, pubDate, imageUrl);
                 items.add(item);
                 title = null;
                 description = null;
                 link = null;
                 pubDate = null;
-                //imageUrl = null;
+                imageUrl = null;
             }
         }
         
@@ -134,9 +133,10 @@ public class NewsParser
     // Read the link tags and return the result
  	private String readImageUrl(XmlPullParser xmlPullParser) throws XmlPullParserException, IOException 
  	{
- 		xmlPullParser.require(XmlPullParser.START_TAG, ns, "url");
-        String imageUrl = readText(xmlPullParser);
-        xmlPullParser.require(XmlPullParser.END_TAG, ns, "url");
+ 		//xmlPullParser.require(XmlPullParser.START_TAG, ns, "media:content");
+ 		String imageUrl = xmlPullParser.getAttributeValue(null, "url");
+        //String imageUrl = readText(xmlPullParser);
+        //xmlPullParser.require(XmlPullParser.END_TAG, ns, "media:content");
          
         return imageUrl;
      }
