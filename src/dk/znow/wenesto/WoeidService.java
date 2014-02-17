@@ -24,7 +24,6 @@ public class WoeidService extends IntentService
 	public WoeidService()
 	{
 		super("WoeidService");
-		Log.v("Wuhuuu","Yes");
 	}
 	
 	@Override
